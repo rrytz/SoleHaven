@@ -1,0 +1,2 @@
+import { createFileRoute } from '@tanstack/react-router';import { InfoPage } from '@/components/store/InfoPage';
+export const Route=createFileRoute('/about')({head:()=>({meta:[{title:'Our story — Solehaven'},{name:'description',content:'Discover the inspiration behind Solehaven footwear.'},{property:'og:title',content:'Our story — Solehaven'},{property:'og:description',content:'Discover the inspiration behind Solehaven footwear.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:()=> <InfoPage kind='about'/>});

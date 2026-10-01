@@ -1,0 +1,3 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { AuthPage } from '@/components/store/AccountPages';
+export const Route=createFileRoute('/forgot-password')({head:()=>({meta:[{title:'Reset password — Solehaven'},{name:'description',content:'Request a password reset for your Solehaven account.'},{property:'og:title',content:'Reset password — Solehaven'},{property:'og:description',content:'Request a password reset for your Solehaven account.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:()=><AuthPage mode='forgot-password'/>});

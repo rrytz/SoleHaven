@@ -1,0 +1,2 @@
+import { createFileRoute } from '@tanstack/react-router';import { OrdersPage } from '@/components/store/AccountPages';
+export const Route=createFileRoute('/orders/$id')({head:()=>({meta:[{title:'Order details — Solehaven'},{name:'description',content:'Track your Solehaven order.'},{property:'og:title',content:'Order details — Solehaven'},{property:'og:description',content:'Track your Solehaven order.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:()=>{const {id}=Route.useParams();return <OrdersPage id={id}/>}});

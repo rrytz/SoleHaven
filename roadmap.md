@@ -1,0 +1,5 @@
+- [x] Brand, original product imagery, catalog, inventory, authentication, and secure order creation.
+- [ ] Storefront discovery, product selection, cart, checkout, and account pages.
+- [ ] Admin management and supporting information pages.
+- [ ] Validate desktop/mobile shopping flow and remaining limitations.
+- [ ] Guest checkout migration (separate backend task): nullable `orders.user_id`, guest `place_order` RPC + anon grant, RLS review, guest confirmation access; only then relax the checkout auth gate.

@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1790801605078,
+      "tag": "0000_create_solehaven_store",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1790808198043,
+      "tag": "0001_guest_checkout",
+      "breakpoints": true
+    }
+  ]
+}

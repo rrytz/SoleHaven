@@ -1,0 +1,3 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { CatalogPage } from '@/components/store/CatalogPage';
+export const Route=createFileRoute('/search')({head:()=>({meta:[{title:'Search footwear — Solehaven'},{name:'description',content:'Search Solehaven shoes by style, brand, category and SKU.'},{property:'og:title',content:'Search footwear — Solehaven'},{property:'og:description',content:'Search Solehaven shoes by style, brand, category and SKU.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:()=><CatalogPage mode='search'/>});

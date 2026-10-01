@@ -1,0 +1,2 @@
+import { createFileRoute } from '@tanstack/react-router';import { AdminPage } from '@/components/store/AdminPage';
+export const Route=createFileRoute('/admin/')({head:()=>({meta:[{title:'Dashboard — Solehaven management'},{name:'description',content:'Solehaven store overview.'},{property:'og:title',content:'Solehaven management'},{property:'og:description',content:'Solehaven store overview.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:()=> <AdminPage/>});
