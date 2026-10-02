@@ -1185,17 +1185,20 @@ Do not leave broken buttons, placeholder links, fake interactions, or unfinished
 
 Build the application as a cohesive system rather than implementing isolated screens.
 
-This project was built with [Lovable](https://lovable.dev).
+## Backend
 
-## Build with Lovable
+SoleHaven runs on a user-owned Supabase project. Supabase credentials are supplied
+through environment variables and are never committed:
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/c831a1b6-6487-4589-8489-34fadab9438f).
+- `SUPABASE_URL` / `SUPABASE_PUBLISHABLE_KEY` — server and SSR
+- `VITE_SUPABASE_URL` / `VITE_SUPABASE_PUBLISHABLE_KEY` — browser build
+- `SUPABASE_SERVICE_ROLE_KEY` — server-only admin access (optional)
+- `DATABASE_URL` — Drizzle migrations (Session-mode pooler, port 5432)
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+Apply migrations with `npx drizzle-kit migrate` against `DATABASE_URL`.
 
 ## Development
+
 
 Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
