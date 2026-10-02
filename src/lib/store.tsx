@@ -11,14 +11,16 @@ export function StoreProvider({ children }: {children:ReactNode}) {
   const [wishlist,setWishlist]=useState<string[]>([]);
   const [user,setUser]=useState<User|null>(null);
   const [authReady,setAuthReady]=useState(false);
+  const [loaded,setLoaded]=useState(false);
   useEffect(()=>{
     try { setCart(JSON.parse(localStorage.getItem('sh-cart')||'[]')); setWishlist(JSON.parse(localStorage.getItem('sh-wishlist')||'[]')); } catch { /* reset invalid stored data */ }
     supabase.auth.getUser().then(({data})=>{setUser(data.user);setAuthReady(true)});
     const {data:{subscription}}=supabase.auth.onAuthStateChange((_event,session)=>{setUser(session?.user??null);setAuthReady(true)});
+    setLoaded(true);
     return ()=>subscription.unsubscribe();
   },[]);
-  useEffect(()=>{localStorage.setItem('sh-cart',JSON.stringify(cart))},[cart]);
-  useEffect(()=>{localStorage.setItem('sh-wishlist',JSON.stringify(wishlist))},[wishlist]);
+  useEffect(()=>{if(loaded)localStorage.setItem('sh-cart',JSON.stringify(cart))},[cart,loaded]);
+  useEffect(()=>{if(loaded)localStorage.setItem('sh-wishlist',JSON.stringify(wishlist))},[wishlist,loaded]);
   const addItem=(variantId:string,productId:string,quantity=1)=>{setCart(prev=>{const found=prev.find(x=>x.variantId===variantId);return found?prev.map(x=>x.variantId===variantId?{...x,quantity:Math.min(10,x.quantity+quantity)}:x):[...prev,{variantId,productId,quantity}]});toast.success('Added to bag')};
   const removeItem=(variantId:string)=>{setCart(prev=>prev.filter(x=>x.variantId!==variantId));toast.success('Removed from bag')};
   const updateQuantity=(variantId:string,quantity:number)=>setCart(prev=>prev.map(x=>x.variantId===variantId?{...x,quantity:Math.max(1,Math.min(10,quantity))}:x));
