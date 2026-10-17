@@ -9,6 +9,8 @@
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
+    "test": "node scripts/regression/run.cjs",
+    "test:regression": "node scripts/regression/run.cjs",
     "format": "prettier --write ."
   },
   "overrides": {
