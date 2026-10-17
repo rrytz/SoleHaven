@@ -24,7 +24,14 @@ function Page(){
   // signed-out case so "not found" is never flashed before the session resolves, and the
   // account query must settle before a signed-in visitor is told the order is not there.
   // A missing order and an order owned by someone else are reported identically.
-  if(!authReady||(!!user&&query.isLoading))return <div className="container-wide page-space">Loading your order...</div>;
+  //
+  // isFetching, not isLoading. Query-core defines isLoading as isPending && isFetching,
+  // and a warm ['my-orders'] cache is already status 'success' from stale data, so
+  // isLoading is false while the background refetch is still running. Gating on it let a
+  // just-placed order render "not found" for a moment, because the placeholder list did
+  // not contain it yet. isFetching stays true for the first fetch and for any refetch
+  // over cached data, so no verdict is ever reached from a stale list.
+  if(!authReady||(!!user&&query.isFetching))return <div className="container-wide page-space">Loading your order...</div>;
   if(query.isError)return <div className="container-wide empty-state"><Package size={52} className="text-muted-foreground"/><p className="eyebrow mt-6">ORDER STATUS UNAVAILABLE</p><h1>We couldn’t load this order.</h1><p>Please try again in a moment.</p><div className="empty-links"><Button onClick={()=>void query.refetch()}>Try again</Button><Link to="/shop">Continue shopping</Link></div></div>;
   return <div className="container-wide empty-state"><Package size={52} className="text-muted-foreground"/><p className="eyebrow mt-6">ORDER NOT FOUND</p><h1>We couldn’t find that order.</h1><p>This link may be incorrect, or the order may not belong to this account.</p><div className="empty-links">{user&&<Link to="/orders">View your orders</Link>}<Link to="/shop">Continue shopping</Link></div></div>
 }
